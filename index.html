@@ -1,0 +1,471 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Cofee - Cafetería Moderna</title>
+  <style>
+
+    /* Estilos generales simples y tipografía */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif; 
+    }
+
+    body {
+      background-color: #1a1e29; 
+      color: #e0e6ed;
+      line-height: 1.6;
+    }
+
+    /* Encabezado y Navegación */
+    header {
+      background-color: #11141c;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid #f06630; 
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #f06630;
+      border: 1px solid #ee916c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 16px;
+      margin-left: 5px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: #f06630                                                                                                                                                     ;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #ee916c;
+      font-size: 28px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .carousel-container {
+      position: relative;
+      max-width: 700px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 2px solid #2d3748;
+    }
+
+    .carousel-slide {
+      display: none;
+      text-align: center;
+    }
+
+    .carousel-slide.active {
+      display: block;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-caption {
+      background-color: #11141c;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      font-size: 20px;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .menu-card {
+      background-color: #222736;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #333a4d;
+      text-align: center;
+      padding-bottom: 15px;
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .menu-card h3 {
+      margin: 12px 0 5px 0;
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .menu-card p {
+      font-size: 13px;
+      color: #a0aec0;
+      padding: 0 10px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #f06630;
+      font-size: 16px;
+    }
+
+    .reservation-form {
+      background-color: #222736;
+      padding: 25px;
+      border-radius: 8px;
+      max-width: 500px;
+      margin: auto;overflow: hidden;
+      border: 1px solid #333a4d;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #4a5568;
+      background-color: #1a1e29;
+      color: #ffffff;
+      font-size: 14px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background-color: #f06630;
+      color: #11141c;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-submit:hover {
+      background-color: #ee916c;
+    }
+
+    #form-message {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+      color: #f06630;
+    }
+
+    .location-info {
+      text-align: center;
+      background-color: #222736;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #11141c;
+      margin-top: 40px;
+      font-size: 13px;
+      color: #718096;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #11141c;
+        padding: 15px;
+        border-bottom: 2px solid #f06630;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">URBAN <span>COFEE</span></div>
+    <button class="hamburger" id="hamburger-btn">☰</button>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#menu">Menú</a></li>
+        <li><a href="#reservas">Reservas</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!--Carrusel -->
+  <section id="inicio">
+    <div class="hero">
+      <h1>Bienvenido a Urban Cofee</h1>
+      <p>El lugar perfecto para disfrutar de buen café </p>
+    </div>
+
+    <!-- Carrusel Sencillo -->
+    <div class="carousel-container">
+      <div class="carousel-slide active">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Local">
+        <div class="carousel-caption">Un ambiente cómodo y moderno</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Café">
+        <div class="carousel-caption">Café preparado en casa </div>
+      </div>
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="Panes">
+        <div class="carousel-caption">Pan caliente preparado cada mañana</div>
+      </div>
+
+      <button class="carousel-btn prev" id="prev-btn">&#10094;</button>
+      <button class="carousel-btn next" id="next-btn">&#10095;</button>
+    </div>
+  </section>
+
+  <section id="menu">
+    <h2>Nuestro Menú</h2>
+    <div class="menu-grid">
+
+      <!-- Tarjetas de Café -->
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=500&q=80" alt="Espresso">
+        <h3>Espresso Doble</h3>
+        <p>Café intenso de grano recién molido.</p>
+        <span class="price">$1.00</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=500&q=80" alt="Latte">
+        <h3>Café Latte</h3>
+        <p>Espresso suave con leche al vapor y espuma.</p>
+        <span class="price">$1.50</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=500&q=80" alt="Cappuccino">
+        <h3>Cappuccino</h3>
+        <p>Con toque de cacao en polvo y cremosa espuma.</p>
+        <span class="price">$1.50</span>
+      </div>
+
+      <!-- Tarjetas de Panes -->
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=500&q=80" alt="Croissant">
+        <h3>Croissant de Mantequilla</h3>
+        <p>Hojaldrado, crujiente y dorado.</p>
+        <span class="price">$1.50</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=500&q=80" alt="Pan de Masa Madre">
+        <h3>Pan "Novia"</h3>
+        <p>Porción de pan con azucar crujiente de la casa.</p>
+        <span class="price">$1.00</span>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=500&q=80" alt="Muffin">
+        <h3>Muffin de Arándanos</h3>
+        <p>Esponjoso y horneado en el día.</p>
+        <span class="price">$1.00</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulario de Reservas -->
+  <section id="reservas">
+    <h2>Reserva tu Mesa</h2>
+    <form class="reservation-form" id="booking-form">
+      <div class="form-group">
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" id="nombre" required placeholder="Tu nombre">
+      </div>
+
+      <div class="form-group">
+        <label for="personas">Número de personas:</label>
+        <select id="personas">
+          <option value="1">1 persona</option>
+          <option value="2" selected>2 personas</option>
+          <option value="4">4 personas</option>
+          <option value="6">6 o más personas</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" required>
+      </div>
+
+      <div class="form-group">
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora" required>
+      </div>
+
+      <button type="submit" class="btn-submit">Confirmar Reserva</button>
+      <div id="form-message"></div>
+    </form>
+  </section>
+
+  <!-- Ubicación -->
+  <section id="ubicacion">
+    <h2>Ubicación y Horarios</h2>
+    <div class="location-info">
+      <p><strong>Dirección:</strong> Pasaje 1, Col Coto, Ateos, La Libertad, El Salvador</p>
+      <p><strong>Teléfono:</strong> +503 6442 1739</p>
+      <br>
+      <p><strong>Horarios de Atención:</strong></p>
+      <p>Lunes a Viernes: 7:00 AM - 8:00 PM</p>
+      <p>Sábados y Domingos: 8:00 AM - 9:00 PM</p>
+    </div>
+  </section>
+  <script>
+
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburgerBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      
+      if (index >= slides.length) {
+        currentSlide = 0;
+      } else if (index < 0) {
+        currentSlide = slides.length - 1;
+      } else {
+        currentSlide = index;
+      }
+
+      slides[currentSlide].classList.add('active');
+    }
+
+    nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+    prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+
+    // Cambiar imagen automáticamente cada 4 segundos
+    setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 4000);
+
+    // 3. Formulario interactivo de reserva
+    const bookingForm = document.getElementById('booking-form');
+    const formMessage = document.getElementById('form-message');
+
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault(); // Evita que la página se recargue
+      
+      const nombre = document.getElementById('nombre').value;
+      const personas = document.getElementById('personas').value;
+      const fecha = document.getElementById('fecha').value;
+      const hora = document.getElementById('hora').value;
+
+      formMessage.style.color = '#00d2d3';
+      formMessage.innerText = `¡Gracias, ${nombre}! Tu reserva para ${personas} persona(s) el ${fecha} a las ${hora} hs fue confirmada.`;
+
+      bookingForm.reset(); 
+    });
+  </script>
+</body>
+</html>
